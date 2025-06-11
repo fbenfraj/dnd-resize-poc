@@ -61,11 +61,22 @@ const ResizableDraggableBox = ({
         color: '#333',
       }}
     >
-      Drag & Resize Me
-      <br />
-      <div style={{ fontSize: 12, marginTop: 8 }}>
-        {size.width} × {size.height}
-      </div>
+      {(() => {
+        const x1 = Math.round((x ?? initialX) / gridSize)
+        const y1 = Math.round((y ?? initialY) / gridSize)
+        const x2 = x1 + Math.round(size.width / gridSize) - 1
+        const y2 = y1 + Math.round(size.height / gridSize) - 1
+        return (
+          <div style={{ textAlign: 'center' }}>
+            <div>
+              x1: {x1}, y1: {y1}
+            </div>
+            <div>
+              x2: {x2}, y2: {y2}
+            </div>
+          </div>
+        )
+      })()}
     </Rnd>
   )
 }
