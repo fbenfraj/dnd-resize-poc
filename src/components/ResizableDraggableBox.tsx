@@ -9,6 +9,9 @@ export interface ResizableDraggableBoxProps {
   minWidth?: number
   minHeight?: number
   gridSize?: number
+  x?: number
+  y?: number
+  onPositionChange?: (pos: { x: number; y: number }) => void
 }
 
 const ResizableDraggableBox = ({
@@ -19,41 +22,33 @@ const ResizableDraggableBox = ({
   minWidth = 200,
   minHeight = 200,
   gridSize = 200,
+  x,
+  y,
+  onPositionChange,
 }: ResizableDraggableBoxProps) => {
-  const [state, setState] = useState({
-    x: initialX,
-    y: initialY,
-    width: initialWidth,
-    height: initialHeight,
-  })
+  const [size, setSize] = useState({ width: initialWidth, height: initialHeight })
+
+  const handleDragStop = (_e: unknown, d: { x: number; y: number }) => {
+    const snappedX = Math.round(d.x / gridSize) * gridSize
+    const snappedY = Math.round(d.y / gridSize) * gridSize
+    onPositionChange?.({ x: snappedX, y: snappedY })
+  }
 
   return (
     <Rnd
-      size={{ width: state.width, height: state.height }}
-      position={{ x: state.x, y: state.y }}
+      size={size}
+      position={{ x: x ?? initialX, y: y ?? initialY }}
       bounds="parent"
       dragGrid={[gridSize, gridSize]}
       resizeGrid={[gridSize, gridSize]}
       minWidth={minWidth}
       minHeight={minHeight}
-      onDragStop={(e, d) => {
-        void e
-        void d
-        void gridSize
-
-        // In this single-box PoC there's never anything on the left or above,
-        // so always push the box to x=0 and y=0 after snapping.
-        setState((prev) => ({ ...prev, x: 0, y: 0 }))
-      }}
-      onResizeStop={(e, direction, ref, delta, position) => {
+      onDragStop={handleDragStop}
+      onResizeStop={(e, direction, ref) => {
         void e
         void direction
-        void delta
-        setState({
-          width: parseInt(ref.style.width, 10),
-          height: parseInt(ref.style.height, 10),
-          ...position,
-        })
+        void ref
+        setSize({ width: parseInt(ref.style.width, 10), height: parseInt(ref.style.height, 10) })
       }}
       style={{
         border: '2px solid #646cff',
@@ -69,7 +64,7 @@ const ResizableDraggableBox = ({
       Drag & Resize Me
       <br />
       <div style={{ fontSize: 12, marginTop: 8 }}>
-        {state.width} × {state.height}
+        {size.width} × {size.height}
       </div>
     </Rnd>
   )
