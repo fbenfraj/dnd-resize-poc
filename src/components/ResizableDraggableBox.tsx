@@ -14,7 +14,7 @@ export interface ResizableDraggableBoxProps {
 const ResizableDraggableBox = ({
   initialX = 80,
   initialY = 80,
-  initialWidth = 320,
+  initialWidth = 200,
   initialHeight = 200,
   minWidth = 120,
   minHeight = 80,
@@ -34,6 +34,7 @@ const ResizableDraggableBox = ({
       bounds="parent"
       dragGrid={[gridSize, gridSize]}
       resizeGrid={[gridSize, gridSize]}
+      lockAspectRatio={true}
       minWidth={minWidth}
       minHeight={minHeight}
       onDragStop={(e, d) => {
