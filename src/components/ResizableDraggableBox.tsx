@@ -38,7 +38,12 @@ const ResizableDraggableBox = ({
       minHeight={minHeight}
       onDragStop={(e, d) => {
         void e
-        setState((prev) => ({ ...prev, x: d.x, y: d.y }))
+        void d
+        void gridSize
+
+        // In this single-box PoC there's never anything on the left or above,
+        // so always push the box to x=0 and y=0 after snapping.
+        setState((prev) => ({ ...prev, x: 0, y: 0 }))
       }}
       onResizeStop={(e, direction, ref, delta, position) => {
         void e
