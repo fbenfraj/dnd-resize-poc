@@ -3,7 +3,7 @@ import ResizableDraggableBox from './components/ResizableDraggableBox'
 
 function App() {
   return (
-    <div style={{ height: '100%', width: '100%', position: 'relative' }}>
+    <div className="grid-container" style={{ height: '100%', width: '100%', position: 'relative' }}>
       <ResizableDraggableBox />
     </div>
   )

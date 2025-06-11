@@ -8,6 +8,7 @@ export interface ResizableDraggableBoxProps {
   initialHeight?: number
   minWidth?: number
   minHeight?: number
+  gridSize?: number
 }
 
 const ResizableDraggableBox = ({
@@ -17,6 +18,7 @@ const ResizableDraggableBox = ({
   initialHeight = 200,
   minWidth = 120,
   minHeight = 80,
+  gridSize = 20,
 }: ResizableDraggableBoxProps) => {
   const [state, setState] = useState({
     x: initialX,
@@ -30,6 +32,8 @@ const ResizableDraggableBox = ({
       size={{ width: state.width, height: state.height }}
       position={{ x: state.x, y: state.y }}
       bounds="parent"
+      dragGrid={[gridSize, gridSize]}
+      resizeGrid={[gridSize, gridSize]}
       minWidth={minWidth}
       minHeight={minHeight}
       onDragStop={(e, d) => {

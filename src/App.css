@@ -39,3 +39,8 @@
 .read-the-docs {
   color: #888;
 }
+
+.grid-container {
+  background-image: repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(0, 0, 0, 0.07) 20px),
+    repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(0, 0, 0, 0.07) 20px);
+}
