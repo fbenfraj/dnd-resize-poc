@@ -15,8 +15,12 @@ const DashboardGrid: React.FC<DashboardGridProps> = () => {
   ])
 
   const addItem = () => {
-    const id = layout.length.toString()
-    const newItem: Layout = { i: id, x: 0, y: Infinity, w: 1, h: 1 }
+    const index = layout.length
+    // Place new item to the right of the previous one; wrap to next row if needed
+    const newX = index % GRID_COLS
+    const newY = Math.floor(index / GRID_COLS)
+
+    const newItem: Layout = { i: index.toString(), x: newX, y: newY, w: 1, h: 1 }
     setLayout((prev) => [...prev, newItem])
   }
 
@@ -59,7 +63,24 @@ const DashboardGrid: React.FC<DashboardGridProps> = () => {
       </GridLayout>
       <button
         onClick={addItem}
-        style={{ position: 'fixed', bottom: 24, right: 24, borderRadius: '50%', width: 56, height: 56 }}
+        style={{
+          position: 'fixed',
+          bottom: 32,
+          right: 32,
+          borderRadius: '50%',
+          width: 72,
+          height: 72,
+          fontSize: 32,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: '#646cff',
+          color: '#fff',
+          border: 'none',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+          cursor: 'pointer',
+        }}
+        aria-label="Add tile"
       >
         +
       </button>
