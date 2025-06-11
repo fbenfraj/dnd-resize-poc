@@ -16,9 +16,9 @@ const ResizableDraggableBox = ({
   initialY = 80,
   initialWidth = 200,
   initialHeight = 200,
-  minWidth = 120,
-  minHeight = 80,
-  gridSize = 20,
+  minWidth = 200,
+  minHeight = 200,
+  gridSize = 200,
 }: ResizableDraggableBoxProps) => {
   const [state, setState] = useState({
     x: initialX,
