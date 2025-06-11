@@ -34,7 +34,6 @@ const ResizableDraggableBox = ({
       bounds="parent"
       dragGrid={[gridSize, gridSize]}
       resizeGrid={[gridSize, gridSize]}
-      lockAspectRatio={true}
       minWidth={minWidth}
       minHeight={minHeight}
       onDragStop={(e, d) => {
