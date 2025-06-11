@@ -41,6 +41,7 @@
 }
 
 .grid-container {
+  background-position: 0 0;
   background-image: repeating-linear-gradient(0deg, transparent, transparent 199px, rgba(0, 0, 0, 0.07) 200px),
     repeating-linear-gradient(90deg, transparent, transparent 199px, rgba(0, 0, 0, 0.07) 200px);
 }

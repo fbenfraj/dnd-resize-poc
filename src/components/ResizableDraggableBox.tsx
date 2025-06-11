@@ -12,8 +12,8 @@ export interface ResizableDraggableBoxProps {
 }
 
 const ResizableDraggableBox = ({
-  initialX = 80,
-  initialY = 80,
+  initialX = 0,
+  initialY = 0,
   initialWidth = 200,
   initialHeight = 200,
   minWidth = 200,
