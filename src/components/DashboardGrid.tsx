@@ -36,6 +36,7 @@ const DashboardGrid: React.FC<DashboardGridProps> = () => {
         layout={layout}
         onLayoutChange={(l: Layout[]) => setLayout(l)}
         compactType="vertical"
+        verticalCompact={true}
         preventCollision={false}
       >
         {layout.map((item) => (
